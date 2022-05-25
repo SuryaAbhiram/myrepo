@@ -1,4 +1,4 @@
-INSERT INTO Persons (
+INSERT INTO People (
     PersonID,
     LastName,
     FirstName,
@@ -6,7 +6,7 @@ INSERT INTO Persons (
     City
 )VALUES (1,"Abhi","Ram","123","Hyd");
 
-INSERT INTO Persons (
+INSERT INTO People (
     PersonID,
     LastName,
     FirstName,
@@ -14,4 +14,4 @@ INSERT INTO Persons (
     City
 )VALUES (2,"Rohit","Surampally","456","Hyd");
 
-Select * from Persons
+Select * from People
