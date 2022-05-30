@@ -1,6 +1,9 @@
 pipeline {
     agent any
         stages {
+            dir("data") {
+                sh "pwd"
+                }
              stage('Deploy1'){
                  steps{
                        sh '''#!/bin/bash
