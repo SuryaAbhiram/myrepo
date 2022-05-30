@@ -1,16 +1,12 @@
 pipeline {
     agent any
-    withCredentials([file(credentialsId: 'RDS_creds', variable: 'rds_creds')]) {
-        dns="${rds_creds.DNS}"
-        user="${rds_creds.USER}"
-        pass="${rds_creds.PASSWORD}"
-     }
+    withCredentials([usernamePassword(credentialsId: 'RDS_DEPLOY', passwordVariable: 'pass', usernameVariable: 'dns')]){
         stages {
              stage('Deploy1'){
                  steps{
                        sh '''#!/bin/bash
                        cd data
-                       mysql -h ${dns} -P 3306 -u ${user} -p${pass} -D test < create.sql 
+                       mysql -h ${dns} -P 3306 -u suryadb22-p${pass} -D test < create.sql 
                       '''
                       }
                     }
@@ -18,10 +14,11 @@ pipeline {
                     steps{
                         sh '''#!/bin/bash
                         cd data
-                        mysql -h ${dns} -P 3306 -u ${user} -p${pass} -D test -D test < insert.sql 
+                        mysql -h ${dns} -P 3306 -u suryadb22-p${pass} -D test < insert.sql
                       '''
                       }
                       
                     } 
-            }    
+            }
+        }
     }
